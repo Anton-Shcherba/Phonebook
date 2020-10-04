@@ -59,6 +59,12 @@ int main()
                 cout << "[Done] " + words[1] + " " + book.find(words[1])->second << endl;
                 color(15);
             }
+            else if (words[0] == "delete" && words.size() == 2 && book.find(words[1]) != book.end()) {
+                book.erase(book.find(words[1]));
+                color(10);
+                cout << "[Done]" << endl;
+                color(15);
+            }
             else {
                 color(12);
                 cout << "Error: wrong arguments" << endl;
