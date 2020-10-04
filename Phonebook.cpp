@@ -2,9 +2,10 @@
 #include <windows.h>
 #include <map>
 #include <string>
-
+#include <vector>
+#include <sstream>
+#include <algorithm>
 using namespace std;
-
 
 void color(unsigned x) {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -32,16 +33,39 @@ void help() {
     cout << "write <filename>";
     color(15);
     cout << "    - record the directory data currently in memory to the specified file." << endl << endl;
-    cout << "Enter your command: ";
 }
-
-
 
 int main()
 {
-    
+    map <string, string> book;
     help();
-
+    while (true) {
+        cout << "Enter your command: ";
+        string command;
+        getline(cin, command);
+        vector<string> words;
+        istringstream ist(command);
+        string tmp;
+        while (ist >> tmp) words.push_back(tmp);
+        if (words[0] == "add") {
+            if (words.size() == 3 && all_of(words[2].begin(), words[2].end(), isdigit)) {
+                book.insert(pair <string, string>(words[1], words[2]));
+                color(10);
+                cout << "Done" << endl;
+                color(15);    
+            }
+            else {
+                color(12);
+                cout << "Error: wrong arguments" << endl;
+                color(15);
+            }
+        }
+        else {
+            color(12);
+            cout << "Error: wrong command" << endl;
+            color(15);
+        }
+    }
     return 0;
 }
 
