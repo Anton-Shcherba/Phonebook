@@ -47,12 +47,12 @@ int main()
         istringstream ist(command);
         string tmp;
         while (ist >> tmp) words.push_back(tmp);
-        if (words[0] == "add") {
+        if (words.size() > 0 && words[0] == "add") {
             if (words.size() == 3 && all_of(words[2].begin(), words[2].end(), isdigit)) {
                 book.insert(pair <string, string>(words[1], words[2]));
                 color(10);
                 cout << "Done" << endl;
-                color(15);    
+                color(15);
             }
             else {
                 color(12);
