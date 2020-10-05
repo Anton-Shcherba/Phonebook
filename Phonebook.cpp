@@ -40,6 +40,7 @@ int main()
     map <string, string> book;
     help();
     while (true) {
+        color(15);
         cout << "Enter your command: ";
         string command;
         getline(cin, command);
@@ -48,34 +49,47 @@ int main()
         string tmp;
         while (ist >> tmp) words.push_back(tmp);
         if (words.size() > 0) {
-            if (words[0] == "add" && words.size() == 3 && all_of(words[2].begin(), words[2].end(), isdigit)) {
-                if (book.find(words[1]) != book.end()) book.at(words[1]) = words[2];
-                else book.insert(pair <string, string>(words[1], words[2]));
-                color(10);
-                cout << "[Done]" << endl;
-                color(15);
+            if (words[0] == "add") {
+                if (words.size() == 3 && all_of(words[2].begin(), words[2].end(), isdigit)) {
+                    if (book.find(words[1]) != book.end()) book.at(words[1]) = words[2];
+                    else book.insert(pair <string, string>(words[1], words[2]));
+                    color(10);
+                    cout << "[Done]" << endl;
+                }
+                else {
+                    color(12);
+                    cout << "[Error] wrong arguments" << endl;
+                }
             }
-            else if (words[0] == "search" && words.size() == 2 && book.find(words[1]) != book.end()) {
-                color(10);
-                cout << "[Done] " + words[1] + " " + book.find(words[1])->second << endl;
-                color(15);
+            else if (words[0] == "search") {
+                if (words.size() == 2 && book.find(words[1]) != book.end()) {
+                    color(10);
+                    cout << "[Done] " + words[1] + " " + book.find(words[1])->second << endl;
+                }
+                else {
+                    color(12);
+                    cout << "[Error] wrong arguments" << endl;
+                }
             }
-            else if (words[0] == "delete" && words.size() == 2 && book.find(words[1]) != book.end()) {
-                book.erase(book.find(words[1]));
-                color(10);
-                cout << "[Done]" << endl;
-                color(15);
+            else if (words[0] == "delete") {
+                if (words.size() == 2 && book.find(words[1]) != book.end()) {
+                    book.erase(book.find(words[1]));
+                    color(10);
+                    cout << "[Done]" << endl;
+                }
+                else {
+                    color(12);
+                    cout << "[Error] wrong arguments" << endl;
+                }
             }
             else {
                 color(12);
-                cout << "Error: wrong arguments" << endl;
-                color(15);
+                cout << "[Error] wrong command" << endl;
             }
         }
         else {
             color(12);
-            cout << "Error: wrong command" << endl;
-            color(15);
+            cout << "[Error] wrong command" << endl;
         }
     }
     return 0; 
