@@ -5,6 +5,7 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
+#include <fstream>
 using namespace std;
 
 void color(unsigned x) {
@@ -81,6 +82,19 @@ int main()
                     color(12);
                     cout << "[Error] wrong arguments" << endl;
                 }
+            }
+            else if (words[0] == "write") {
+                ofstream out(words[1] + ".txt");
+                if (out.is_open()) {
+                    for (auto now : book) out << now.first << " " << now.second << endl;
+                    color(10);
+                    cout << "[Done]" << endl;
+                }
+                else {
+                    color(12);
+                    cout << "[Error] wrong arguments" << endl;
+                }
+                out.close();
             }
             else {
                 color(12);
