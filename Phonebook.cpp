@@ -96,6 +96,23 @@ int main()
                 }
                 out.close();
             }
+            else if (words[0] == "read") {
+                ifstream in(words[1] + ".txt");
+                if (in.is_open()) {
+                    string tmp1, tmp2;
+                    while (in >> tmp1 && in >> tmp2) {
+                        if (book.find(tmp1) != book.end()) book.at(tmp1) = tmp2;
+                        else book.insert(pair <string, string>(tmp1, tmp2));
+                    }     
+                    color(10);
+                    cout << "[Done]" << endl;
+                }
+                else {
+                    color(12);
+                    cout << "[Error] wrong arguments" << endl;
+                }
+                in.close();
+            }
             else {
                 color(12);
                 cout << "[Error] wrong command" << endl;
