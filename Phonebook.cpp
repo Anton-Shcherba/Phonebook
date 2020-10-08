@@ -64,8 +64,9 @@ int main()
         if (words.size() > 0) {
             if (words[0] == "add") {
                 if (words.size() == 3 && all_of(words[2].begin(), words[2].end(), isdigit)) {
-                    if (book.find(words[1]) != book.end()) book.at(words[1]) = words[2];
-                    else book.insert(pair <string, string>(words[1], words[2]));
+                    pair<map<string, string>::iterator, bool> ret;
+                    ret = book.insert(pair <string, string>(words[1], words[2]));
+                    if (ret.second == false) book.at(words[1]) = words[2];
                     color(10);
                     cout << "[Done]" << endl;
                 }
