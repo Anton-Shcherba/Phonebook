@@ -33,7 +33,19 @@ void help() {
     color(9);
     cout << "write <filename>";
     color(15);
-    cout << "    - record the directory data currently in memory to the specified file." << endl << endl;
+    cout << "    - record the directory data currently in memory to the specified file." << endl;
+    color(9);
+    cout << "show";
+    color(15);
+    cout << "                - show the list of contacts." << endl;
+    color(9);
+    cout << "help";
+    color(15);
+    cout << "                - display help information." << endl;
+    color(9);
+    cout << "exit";
+    color(15);
+    cout << "                - closing the program." << endl << endl;
 }
 
 int main()
@@ -113,6 +125,19 @@ int main()
                 }
                 in.close();
             }
+            else if (words[0] == "exit") {
+                return 0;
+            }
+            else if (words[0] == "show") {
+                color(10);
+                for (auto now : book) {
+                    cout << now.first << " " << now.second << endl;
+                }
+                cout << "[Done]" << endl;
+            }
+            else if (words[0] == "help") {
+                help();
+            }
             else {
                 color(12);
                 cout << "[Error] wrong command" << endl;
@@ -123,7 +148,6 @@ int main()
             cout << "[Error] wrong command" << endl;
         }
     }
-    return 0; 
 }
 
 
