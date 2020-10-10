@@ -118,17 +118,19 @@ int main()
             else if (words[0] == "read") {
                 color(12);
                 if (words.size() != 2) cout << "[Error] command \"read\" should be: read <filename>" << endl;
-                ifstream in(words[1] + ".txt");
-                if (!in.is_open()) cout << "[Error] invalid file name or file does not exist" << endl;
                 else {
-                    string tmp1, tmp2;
-                    pair<map<string, string>::iterator, bool> ret;
-                    while (in >> tmp1 && in >> tmp2) {
-                        ret = book.insert(pair <string, string>(tmp1, tmp2));
-                        if (ret.second == false) book.at(tmp1) = tmp2;
+                    ifstream in(words[1] + ".txt");
+                    if (!in.is_open()) cout << "[Error] invalid file name or file does not exist" << endl;
+                    else {
+                        string tmp1, tmp2;
+                        pair<map<string, string>::iterator, bool> ret;
+                        while (in >> tmp1 && in >> tmp2) {
+                            ret = book.insert(pair <string, string>(tmp1, tmp2));
+                            if (ret.second == false) book.at(tmp1) = tmp2;
+                        }
+                        color(10);
+                        cout << "[Done] data is read from file " + words[1] + ".txt" << endl;
                     }
-                    color(10);
-                    cout << "[Done] data is read from file " + words[1] + ".txt" << endl;
                 }
             }
             else if (words[0] == "show") {
