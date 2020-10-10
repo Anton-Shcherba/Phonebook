@@ -80,13 +80,16 @@ int main()
                 }
             }
             else if (words[0] == "search") {
-                if (words.size() == 2 && book.find(words[1]) != book.end()) {
-                    color(10);
-                    cout << "[Done] " + words[1] + " " + book.find(words[1])->second << endl;
-                }
+                color(12);
+                if (words.size() != 2) cout << "[Error] not enough arguments" << endl;
                 else {
-                    color(12);
-                    cout << "[Error] wrong arguments" << endl;
+                    map<string, string>::iterator it;
+                    it = book.find(words[1]);
+                    if (it == book.end()) cout << "[Error] no entry with name " + words[1] + " found." << endl;
+                    else {
+                        color(10);
+                        cout << "[Done] " + words[1] + " " + it->second << endl;
+                    }
                 }
             }
             else if (words[0] == "delete") {
