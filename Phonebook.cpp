@@ -63,16 +63,20 @@ int main()
         while (ist >> tmp) words.push_back(tmp);
         if (words.size() > 0) {
             if (words[0] == "add") {
-                if (words.size() == 3 && all_of(words[2].begin(), words[2].end(), isdigit)) {
+                color(12);
+                if (words.size() != 3) cout << "[Error] not enough arguments" << endl;
+                else if (words[2].substr(0,1) == "0") cout << "[Error] number cannot start from zero" << endl;
+                else if (words[2].size() != 7) cout << "[Error] the length of the number must be seven" << endl;
+                else if (!all_of(words[2].begin(), words[2].end(), isdigit)) cout << "[Error] number must be digits" << endl;
+                else {
+                    color(10);
                     pair<map<string, string>::iterator, bool> ret;
                     ret = book.insert(pair <string, string>(words[1], words[2]));
-                    if (ret.second == false) book.at(words[1]) = words[2];
-                    color(10);
-                    cout << "[Done]" << endl;
-                }
-                else {
-                    color(12);
-                    cout << "[Error] wrong arguments" << endl;
+                    if (ret.second == false) {
+                        book.at(words[1]) = words[2];
+                        cout << "[Done] number updated" << endl;
+                    }
+                    else cout << "[Done] number recorded" << endl;
                 }
             }
             else if (words[0] == "search") {
