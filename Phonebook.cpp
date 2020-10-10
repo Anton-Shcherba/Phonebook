@@ -65,9 +65,9 @@ int main()
             if (words[0] == "add") {
                 color(12);
                 if (words.size() != 3) cout << "[Error] command \"add\" should be: add <name> <number>" << endl;
-                else if (words[2].substr(0,1) == "0") cout << "[Error] number cannot start from zero" << endl;
-                else if (words[2].size() != 7) cout << "[Error] the length of the number must be seven" << endl;
-                else if (!all_of(words[2].begin(), words[2].end(), isdigit)) cout << "[Error] number must be digits" << endl;
+                else if (words[2].substr(0,1) == "0") cout << "[Error] number cannot start with zero" << endl;
+                else if (words[2].size() != 7) cout << "[Error] the length of the number must be seven numerals" << endl;
+                else if (!all_of(words[2].begin(), words[2].end(), isdigit)) cout << "[Error] number should contain only digits" << endl;
                 else {
                     color(10);
                     pair<map<string, string>::iterator, bool> ret;
@@ -85,7 +85,7 @@ int main()
                 else {
                     map<string, string>::iterator it;
                     it = book.find(words[1]);
-                    if (it == book.end()) cout << "[Error] no entry with name " + words[1] + " found." << endl;
+                    if (it == book.end()) cout << "[Error] no contact with name " + words[1] + " found" << endl;
                     else {
                         color(10);
                         cout << "[Done] " + words[1] + " " + it->second << endl;
@@ -111,7 +111,7 @@ int main()
                         for (auto now : book) out << now.first << " " << now.second << endl;
                         out.close();
                         color(10);
-                        cout << "[Done] data written to file " + words[1] + ".txt" << endl;
+                        cout << "[Done] data are written to the file " + words[1] + ".txt" << endl;
                     }
                 }
             }
@@ -129,7 +129,7 @@ int main()
                             if (ret.second == false) book.at(tmp1) = tmp2;
                         }
                         color(10);
-                        cout << "[Done] data is read from file " + words[1] + ".txt" << endl;
+                        cout << "[Done] data are read from file " + words[1] + ".txt" << endl;
                     }
                 }
             }
@@ -150,7 +150,10 @@ int main()
             else if (words[0] == "exit") {
                 color(12);
                 if (words.size() > 1) cout << "[Error] command \"exit\" requires no arguments" << endl;
-                else return 0;
+                else {
+                    color(15);
+                    return 0;
+                }
             }
             else {
                 color(12);
