@@ -102,34 +102,34 @@ int main()
                 }
             }
             else if (words[0] == "write") {
-                ofstream out(words[1] + ".txt");
-                if (out.is_open()) {
-                    for (auto now : book) out << now.first << " " << now.second << endl;
-                    color(10);
-                    cout << "[Done]" << endl;
-                }
+                color(12);
+                if (words.size() != 2) cout << "[Error] not enough arguments" << endl;
                 else {
-                    color(12);
-                    cout << "[Error] wrong arguments" << endl;
+                    ofstream out(words[1] + ".txt");
+                    if (!out.is_open()) cout << "[Error] invalid file name" << endl;
+                    else {
+                        for (auto now : book) out << now.first << " " << now.second << endl;
+                        out.close();
+                        color(10);
+                        cout << "[Done] data written to file " + words[1] + ".txt" << endl;
+                    }
                 }
-                out.close();
             }
             else if (words[0] == "read") {
+                color(12);
+                if (words.size() != 2) cout << "[Error] not enough arguments" << endl;
                 ifstream in(words[1] + ".txt");
-                if (in.is_open()) {
-                    string tmp1, tmp2;
-                    while (in >> tmp1 && in >> tmp2) {
-                        if (book.find(tmp1) != book.end()) book.at(tmp1) = tmp2;
-                        else book.insert(pair <string, string>(tmp1, tmp2));
-                    }     
-                    color(10);
-                    cout << "[Done]" << endl;
-                }
+                if (!in.is_open()) cout << "[Error] invalid file name or file does not exist" << endl;
                 else {
-                    color(12);
-                    cout << "[Error] wrong arguments" << endl;
+                    string tmp1, tmp2;
+                    pair<map<string, string>::iterator, bool> ret;
+                    while (in >> tmp1 && in >> tmp2) {
+                        ret = book.insert(pair <string, string>(tmp1, tmp2));
+                        if (ret.second == false) book.at(tmp1) = tmp2;
+                    }
+                    color(10);
+                    cout << "[Done] data is read from file " + words[1] + ".txt" << endl;
                 }
-                in.close();
             }
             else if (words[0] == "exit") {
                 return 0;
