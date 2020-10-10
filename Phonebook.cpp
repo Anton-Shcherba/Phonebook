@@ -131,18 +131,24 @@ int main()
                     cout << "[Done] data is read from file " + words[1] + ".txt" << endl;
                 }
             }
-            else if (words[0] == "exit") {
-                return 0;
-            }
             else if (words[0] == "show") {
-                color(10);
-                for (auto now : book) {
-                    cout << now.first << " " << now.second << endl;
+                color(12);
+                if (words.size() > 1) cout << "[Error] command \"show\" requires no arguments" << endl;
+                if (book.size() == 0) cout << "[Error] no contacts in memory" << endl;
+                else {
+                    color(10);
+                    for (auto now : book) cout << now.first << " " << now.second << endl;
                 }
-                cout << "[Done]" << endl;
             }
             else if (words[0] == "help") {
-                help();
+                color(12);
+                if (words.size() > 1) cout << "[Error] command \"help\" requires no arguments" << endl;
+                else help();
+            }
+            else if (words[0] == "exit") {
+                color(12);
+                if (words.size() > 1) cout << "[Error] command \"exit\" requires no arguments" << endl;
+                else return 0;
             }
             else {
                 color(12);
@@ -151,7 +157,7 @@ int main()
         }
         else {
             color(12);
-            cout << "[Error] wrong command" << endl;
+            cout << "[Error] command not entered" << endl;
         }
     }
 }
