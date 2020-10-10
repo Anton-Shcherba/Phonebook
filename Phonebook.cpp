@@ -93,14 +93,12 @@ int main()
                 }
             }
             else if (words[0] == "delete") {
-                if (words.size() == 2 && book.find(words[1]) != book.end()) {
-                    book.erase(book.find(words[1]));
-                    color(10);
-                    cout << "[Done]" << endl;
-                }
+                color(12);
+                if (words.size() != 2 ) cout << "[Error] not enough arguments" << endl;
+                else if (!book.erase(words[1])) cout << "[Error] contact with this name does not exist" << endl;
                 else {
-                    color(12);
-                    cout << "[Error] wrong arguments" << endl;
+                    color(10);
+                    cout << "[Done] contact deleted" << endl;
                 }
             }
             else if (words[0] == "write") {
