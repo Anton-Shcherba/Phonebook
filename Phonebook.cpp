@@ -64,7 +64,7 @@ int main()
         if (words.size() > 0) {
             if (words[0] == "add") {
                 color(12);
-                if (words.size() != 3) cout << "[Error] not enough arguments" << endl;
+                if (words.size() != 3) cout << "[Error] command \"add\" should be: add <name> <number>" << endl;
                 else if (words[2].substr(0,1) == "0") cout << "[Error] number cannot start from zero" << endl;
                 else if (words[2].size() != 7) cout << "[Error] the length of the number must be seven" << endl;
                 else if (!all_of(words[2].begin(), words[2].end(), isdigit)) cout << "[Error] number must be digits" << endl;
@@ -81,7 +81,7 @@ int main()
             }
             else if (words[0] == "search") {
                 color(12);
-                if (words.size() != 2) cout << "[Error] not enough arguments" << endl;
+                if (words.size() != 2) cout << "[Error] command \"search\" should be: search <name>" << endl;
                 else {
                     map<string, string>::iterator it;
                     it = book.find(words[1]);
@@ -94,7 +94,7 @@ int main()
             }
             else if (words[0] == "delete") {
                 color(12);
-                if (words.size() != 2 ) cout << "[Error] not enough arguments" << endl;
+                if (words.size() != 2 ) cout << "[Error] command \"delete\" should be: delete <name>" << endl;
                 else if (!book.erase(words[1])) cout << "[Error] contact with this name does not exist" << endl;
                 else {
                     color(10);
@@ -103,7 +103,7 @@ int main()
             }
             else if (words[0] == "write") {
                 color(12);
-                if (words.size() != 2) cout << "[Error] not enough arguments" << endl;
+                if (words.size() != 2) cout << "[Error] command \"write\" should be: write <filename>" << endl;
                 else {
                     ofstream out(words[1] + ".txt");
                     if (!out.is_open()) cout << "[Error] invalid file name" << endl;
@@ -117,7 +117,7 @@ int main()
             }
             else if (words[0] == "read") {
                 color(12);
-                if (words.size() != 2) cout << "[Error] not enough arguments" << endl;
+                if (words.size() != 2) cout << "[Error] command \"read\" should be: read <filename>" << endl;
                 ifstream in(words[1] + ".txt");
                 if (!in.is_open()) cout << "[Error] invalid file name or file does not exist" << endl;
                 else {
