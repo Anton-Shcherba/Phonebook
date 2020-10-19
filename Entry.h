@@ -3,13 +3,13 @@
 class Entry
 {
 private:
+    std::string* name;
     int* number;
-    char* name;
 public:
     Entry();
-    Entry(const char _name[], int _number);
-    char* get_name() const;
-    int get_number() const;
+    Entry(std::string _name, int _number);
+    const std::string get_name() const;
+    const int get_number() const;
     bool operator==(const Entry& p) const;
     friend std::ostream& operator<< (std::ostream& out, const Entry& entry);
     friend std::istream& operator>> (std::istream& in, Entry& entry);
@@ -18,27 +18,13 @@ public:
 namespace std
 {
     template <>
-    struct hash<char*>
-    {
-        size_t operator()(const char* s) const
-        {
-            size_t h = 5381;
-            int c;
-            while ((c = *s++))
-                h = ((h << 5) + h) + c;
-            return h;
-        }
-    };
-
-    template <>
     struct hash<Entry>
     {
         typedef Entry argument_type;
         typedef std::size_t result_type;
-
         result_type operator()(argument_type const&s) const
         {
-            return std::hash<char*>()(s.get_name());
+            return std::hash<std::string>()(s.get_name());
         }
     };
 }
