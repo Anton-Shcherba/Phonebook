@@ -8,12 +8,17 @@ Entry::Entry(const char _name[], int _number) {
     strcpy_s(name, strlen(_name) + 1, _name);
 }
 
-char* Entry::get_name() {
+char* Entry::get_name() const {
     return name;
 }
 
-int Entry::get_number() {
+int Entry::get_number() const {
     return *number;
+}
+
+bool Entry::operator==(const Entry& e) const
+{
+    return *name == *e.name;
 }
 
 std::ostream& operator<< (std::ostream& out, const Entry& entry)
