@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+
 class Entry
 {
 private:
@@ -7,6 +8,7 @@ private:
     int* number;
 public:
     Entry();
+    Entry(std::string _name);
     Entry(std::string _name, int _number);
     const std::string get_name() const;
     const int get_number() const;

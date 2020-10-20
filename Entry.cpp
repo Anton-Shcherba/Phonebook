@@ -7,6 +7,11 @@ Entry::Entry(std::string _name, int _number) {
     number = new int(_number);
 }
 
+Entry::Entry(std::string _name) {
+    name = new std::string(_name);
+    number = nullptr;
+}
+
 const std::string Entry::get_name() const {
     return *name;
 }
