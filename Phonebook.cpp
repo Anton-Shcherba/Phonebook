@@ -74,12 +74,6 @@ constexpr auto exit_string = "exit";
 
 int main()
 {
-    Add_Command add;
-    Search_Command search;
-    Del_Command del;
-    Write_Command write;
-    Read_Command read;
-    Show_Command show;
     unordered_set <Entry> book;
     help();
     while (true) {
@@ -89,26 +83,32 @@ int main()
         cin >> command;
         color(DarkGray);
         if (command == add_string) {
+            static Add_Command add;
             add.init();
             add.execute(book);
         }
         else if (command == search_string) {
+            static Search_Command search;
             search.init();
             search.execute(book);
         }
         else if (command == delete_string) {
+            static Del_Command del;
             del.init();
             del.execute(book);
         }
         else if (command == write_string) {
+            static Write_Command write;
             write.init();
             write.execute(book);
         }
         else if (command == read_string) {
+            static Read_Command read;
             read.init();
             read.execute(book);
         }
         else if (command == show_string) {
+            static Show_Command show;
             show.init();
             show.execute(book);
         }
