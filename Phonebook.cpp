@@ -114,5 +114,6 @@ int main()
         }
         else if (command == help_string) help();
         else if (command == exit_string) return 0;
+        else cout << "[Error] wrong command" << endl;
     }
 }
