@@ -63,6 +63,15 @@ void help() {
     cout << "                - closing the program." << endl << endl;
 }
 
+constexpr auto add_string = "add";
+constexpr auto search_string = "search";
+constexpr auto delete_string = "delete";
+constexpr auto write_string = "write";
+constexpr auto read_string = "read";
+constexpr auto show_string = "show";
+constexpr auto help_string = "help";
+constexpr auto exit_string = "exit";
+
 int main()
 {
     Add_Command add;
@@ -79,31 +88,31 @@ int main()
         string command;
         cin >> command;
         color(DarkGray);
-        if (command == "add") {
+        if (command == add_string) {
             add.init();
             add.execute(book);
         }
-        else if (command == "search") {
+        else if (command == search_string) {
             search.init();
             search.execute(book);
         }
-        else if (command == "delete") {
+        else if (command == delete_string) {
             del.init();
             del.execute(book);
         }
-        else if (command == "write") {
+        else if (command == write_string) {
             write.init();
             write.execute(book);
         }
-        else if (command == "read") {
+        else if (command == read_string) {
             read.init();
             read.execute(book);
         }
-        else if (command == "show") {
+        else if (command == show_string) {
             show.init();
             show.execute(book);
         }
-        else if (command == "help") help();
-        else if (command == "exit") return 0;
+        else if (command == help_string) help();
+        else if (command == exit_string) return 0;
     }
 }
