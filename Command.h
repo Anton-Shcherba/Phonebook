@@ -10,6 +10,7 @@ class Command
 protected:
     std::vector<std::string> words;
 public:
+    virtual void execute(std::unordered_set<Entry>& phonebook) = 0;
     void init();
 };
 
