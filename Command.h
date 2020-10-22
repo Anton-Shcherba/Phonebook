@@ -11,7 +11,7 @@ protected:
     std::vector<std::string> words;
 public:
     virtual void execute(std::unordered_set<Entry>& phonebook) = 0;
-    void init();
+    void init(const std::vector<std::string>& arguments);
 };
 
 class Add_Command : public Command {

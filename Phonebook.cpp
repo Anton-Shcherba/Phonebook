@@ -79,37 +79,41 @@ int main()
     while (true) {
         color(White);
         cout << "Enter your command: ";
-        string command;
+        string command, arguments_line;
         cin >> command;
+        vector<string> arguments;
+        getline(cin, arguments_line);
+        istringstream ist(arguments_line);
+        while (ist >> arguments_line) arguments.push_back(arguments_line);
         color(DarkGray);
         if (command == add_string) {
             static Add_Command add;
-            add.init();
+            add.init(arguments);
             add.execute(book);
         }
         else if (command == search_string) {
             static Search_Command search;
-            search.init();
+            search.init(arguments);
             search.execute(book);
         }
         else if (command == delete_string) {
             static Del_Command del;
-            del.init();
+            del.init(arguments);
             del.execute(book);
         }
         else if (command == write_string) {
             static Write_Command write;
-            write.init();
+            write.init(arguments);
             write.execute(book);
         }
         else if (command == read_string) {
             static Read_Command read;
-            read.init();
+            read.init(arguments);
             read.execute(book);
         }
         else if (command == show_string) {
             static Show_Command show;
-            show.init();
+            show.init(arguments);
             show.execute(book);
         }
         else if (command == help_string) help();

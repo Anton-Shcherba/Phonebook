@@ -1,11 +1,7 @@
 #include "Command.h"
 
-void Command::init() {
-    std::string command;
-    getline(std::cin, command);
-    std::istringstream ist(command);
-    words.clear();
-    while (ist >> command) words.push_back(command);
+void Command::init(const std::vector<std::string>& arguments) {
+    words = arguments;
 }
 
 void Add_Command::execute(std::unordered_set <Entry>& entry_set) {
