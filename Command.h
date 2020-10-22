@@ -16,31 +16,31 @@ public:
 
 class Add_Command : public Command {
 public:
-    void execute(std::unordered_set <Entry>& entry_set);
+    void execute(std::unordered_set <Entry>& entry_set) override;
 };
 
 class Search_Command : public Command {
 public:
-    void execute(std::unordered_set <Entry>& entry_set);
+    void execute(std::unordered_set <Entry>& entry_set) override;
 };
 
 class Del_Command : public Command {
 public:
-    void execute(std::unordered_set <Entry>& entry_set);
+    void execute(std::unordered_set <Entry>& entry_set) override;
 };
 
 class Write_Command : public Command {
 public:
-    void execute(std::unordered_set <Entry>& entry_set);
+    void execute(std::unordered_set <Entry>& entry_set) override;
 };
 
 class Read_Command : public Command {
 public:
-    void execute(std::unordered_set <Entry>& entry_set);
+    void execute(std::unordered_set <Entry>& entry_set) override;
 };
 
 class Show_Command : public Command {
 public:
-    void execute(std::unordered_set <Entry>& entry_set);
+    void execute(std::unordered_set <Entry>& entry_set) override;
 };
 
