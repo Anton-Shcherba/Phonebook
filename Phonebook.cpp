@@ -89,32 +89,32 @@ int main()
         if (command == add_string) {
             static Add_Command add;
             add.init(arguments);
-            add.execute(book);
+            cout << add.execute(book) << endl;
         }
         else if (command == search_string) {
             static Search_Command search;
             search.init(arguments);
-            search.execute(book);
+            cout << search.execute(book) << endl;
         }
         else if (command == delete_string) {
             static Del_Command del;
             del.init(arguments);
-            del.execute(book);
+            cout << del.execute(book) << endl;
         }
         else if (command == write_string) {
             static Write_Command write;
             write.init(arguments);
-            write.execute(book);
+            cout << write.execute(book) << endl;
         }
         else if (command == read_string) {
             static Read_Command read;
             read.init(arguments);
-            read.execute(book);
+            cout << read.execute(book) << endl;
         }
         else if (command == show_string) {
             static Show_Command show;
             show.init(arguments);
-            show.execute(book);
+            cout << show.execute(book) << endl;
         }
         else if (command == help_string) help();
         else if (command == exit_string) return 0;
