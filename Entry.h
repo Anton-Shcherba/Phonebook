@@ -4,8 +4,8 @@
 class Entry
 {
 private:
-    std::string* name;
-    int* number;
+    std::string name;
+    int number;
 public:
     Entry();
     Entry(std::string _name);
