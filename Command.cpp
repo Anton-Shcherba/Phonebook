@@ -10,20 +10,23 @@ std::string Add_Command::execute(std::unordered_set <Entry>& entry_set) {
     else if (words[1].size() != 7) return "[Error] the length of the number must be seven numerals";
     else if (!all_of(words[1].begin(), words[1].end(), isdigit)) return "[Error] number should contain only digits";
     else {
-        auto ret = entry_set.emplace(words[0], stoi(words[1]));
-        if (!ret.second) {
-            entry_set.erase(ret.first);
+        auto got = std::find_if(entry_set.cbegin(), entry_set.cend(), [&](const Entry& e) { return e.get_name() == words[0]; });
+        if (got == entry_set.end()) {
+            entry_set.emplace(words[0], stoi(words[1]));
+            return "[Done] number recorded";
+        }
+        else {
+            entry_set.erase(got);
             entry_set.emplace(words[0], stoi(words[1]));
             return "[Done] number updated";
         }
-        else return "[Done] number recorded";
     }
 }
 
 std::string Search_Command::execute(std::unordered_set <Entry>& entry_set) {
     if (words.size() != 1) return "[Error] command \"search\" should be: search <name>";
     else {
-        std::unordered_set<Entry>::const_iterator  got = entry_set.find(Entry(words[0]));
+        auto got = std::find_if(entry_set.cbegin(), entry_set.cend(), [&](const Entry& e) { return e.get_name() == words[0]; });
         if (got == entry_set.end()) return "[Error] no contact with name " + words[0] + " found";
         else return "[Done] " + got->get_name() + ' ' + std::to_string(got->get_number());
     }
