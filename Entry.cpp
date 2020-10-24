@@ -22,7 +22,7 @@ const int Entry::get_number() const {
 
 bool Entry::operator==(const Entry& e) const
 {
-    return name == e.name;
+    return name == e.name && number == e.number;
 }
 
 std::ostream& operator<< (std::ostream& out, const Entry& entry)

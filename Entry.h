@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <string>
 
 class Entry
 {
@@ -26,7 +27,7 @@ namespace std
         typedef std::size_t result_type;
         result_type operator()(argument_type const&s) const
         {
-            return std::hash<std::string>()(s.get_name());
+            return std::hash<std::string>()(s.get_name() + std::to_string(s.get_number()));
         }
     };
 }
