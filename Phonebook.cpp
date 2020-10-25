@@ -3,63 +3,63 @@
 #include "Command.h"
 using namespace std;
 
-enum ConsoleColor {
-    Black,
-    Blue,
-    Green,
-    Cyan,
-    Red,
-    Magenta,
-    Brown,
-    LightGray,
-    DarkGray,
-    LightBlue,
-    LightGreen,
-    LightCyan,
-    LightRed,
-    LightMagenta,
-    Yellow,
-    White
+enum class Color {
+    Black = 0,
+    Blue = 1,
+    Green = 2,
+    Cyan = 3,
+    Red = 4,
+    Magenta = 5,
+    Brown = 6,
+    LightGray = 7,
+    DarkGray = 8,
+    LightBlue = 9,
+    LightGreen = 10,
+    LightCyan = 11,
+    LightRed = 12,
+    LightMagenta = 13,
+    Yellow = 14,
+    White = 15
 };
 
-void color(unsigned x) {
+void Console_color(Color x) {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(hConsole, x);
+    SetConsoleTextAttribute(hConsole, static_cast<unsigned>(x));
 }
 
 void help() {
     system("cls");
-    color(LightBlue);
+    Console_color(Color::LightBlue);
     cout << "read <filename>";
-    color(White);
+    Console_color(Color::White);
     cout << "     - read (load) data from a file. The path to the file is specified instead of <filename>." << endl;
-    color(LightBlue);
+    Console_color(Color::LightBlue);
     cout << "add <name> <number>";
-    color(White);
+    Console_color(Color::White);
     cout << " - add an entry to the phonebook. If an entry with the same name already exists, the new one will                          replace the old one (the number will be overwritten)." << endl;
-    color(LightBlue);
+    Console_color(Color::LightBlue);
     cout << "search <name>";
-    color(White);
+    Console_color(Color::White);
     cout << "       - search for a record with this name." << endl;
-    color(LightBlue);
+    Console_color(Color::LightBlue);
     cout << "delete <name>";
-    color(White);
+    Console_color(Color::White);
     cout << "       - delete a record with this name." << endl;
-    color(LightBlue);
+    Console_color(Color::LightBlue);
     cout << "write <filename>";
-    color(White);
+    Console_color(Color::White);
     cout << "    - record the directory data currently in memory to the specified file." << endl;
-    color(LightBlue);
+    Console_color(Color::LightBlue);
     cout << "show";
-    color(White);
+    Console_color(Color::White);
     cout << "                - show the list of contacts." << endl;
-    color(LightBlue);
+    Console_color(Color::LightBlue);
     cout << "help";
-    color(White);
+    Console_color(Color::White);
     cout << "                - display help information." << endl;
-    color(LightBlue);
+    Console_color(Color::LightBlue);
     cout << "exit";
-    color(White);
+    Console_color(Color::White);
     cout << "                - closing the program." << endl << endl;
 }
 
@@ -77,7 +77,7 @@ int main()
     unordered_set <Entry> book;
     help();
     while (true) {
-        color(White);
+        Console_color(Color::White);
         cout << "Enter your command: ";
         string command, arguments_line;
         cin >> command;
@@ -85,7 +85,7 @@ int main()
         getline(cin, arguments_line);
         istringstream ist(arguments_line);
         while (ist >> arguments_line) arguments.push_back(arguments_line);
-        color(DarkGray);
+        Console_color(Color::DarkGray);
         if (command == add_string) {
             static Add_Command add;
             add.init(arguments);
